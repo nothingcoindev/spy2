@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Other 500. ($SPY2): The index that didn't make the index</title>
+<meta name="description" content="$SPY2 is a parody memecoin. 500 imaginary companies. Zero market leaders. Not an index, fund or security.">
+<meta property="og:title" content="THE OTHER 500. ($SPY2)">
+<meta property="og:description" content="The S&P 500 tracks America's leading companies. We represent the ones that didn't make the cut. Parody memecoin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111111; --paper:#FFFFFF; --ledger:#F5F5F2; --grey:#777777; --rule:#D9D9D4;
+  --up:#1F8F4E; --down:#B3261E;
+  --display:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --body:Inter,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--ledger);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.label{font:600 11px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.mono{font-family:var(--mono)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* status strip + tape */
+.strip{background:var(--ink);color:#cfcfcb;font:500 11px/1 var(--mono);letter-spacing:.06em}
+.strip .wrap{display:flex;justify-content:space-between;gap:16px;padding-top:9px;padding-bottom:9px}
+.strip b{color:#fff;font-weight:600}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#9a9a96;margin-right:7px;vertical-align:1px}
+.tape{border-bottom:1px solid var(--rule);background:var(--paper);overflow:hidden;white-space:nowrap;font:500 12px/1 var(--mono);color:var(--grey)}
+.tape-inner{display:inline-block;padding:10px 0;animation:tape 140s linear infinite}
+.tape span{margin-right:34px}
+.tape b{color:var(--ink);font-weight:600;margin-right:8px}
+@media (max-width:640px){.strip .wrap>span:last-child{display:none}}
+@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tape-inner{animation:none}}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(245,245,242,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--ink)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:900 26px/1 var(--display);letter-spacing:-.04em;text-decoration:none}
+.navlinks{display:flex;gap:26px}
+.navlinks a{text-decoration:none;font-size:14px;font-weight:500;color:#333}
+.navlinks a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+@media (max-width:860px){.navlinks{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border:1.5px solid var(--ink);font:600 15px/1 var(--body);text-decoration:none;cursor:pointer;background:transparent;color:var(--ink);border-radius:0}
+.btn.primary{background:var(--ink);color:#fff}
+.btn:hover{transform:translateY(-1px)}
+.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;transform:none}
+.btn small{font:500 10px/1 var(--mono);letter-spacing:.06em;opacity:.8;text-transform:uppercase}
+
+/* hero */
+.hero{padding:64px 0 56px;border-bottom:1px solid var(--ink)}
+.hero-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:56px;align-items:end}
+.hero h1{font:900 clamp(56px,10.5vw,148px)/.86 var(--display);letter-spacing:-.035em;margin:18px 0 28px}
+.hero .sub{font-size:clamp(19px,2.1vw,24px);line-height:1.35;font-weight:500;max-width:620px;margin:0 0 14px}
+.hero .support{color:#444;margin:0 0 30px;max-width:560px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.parody{margin-top:28px;border-left:3px solid var(--ink);padding:10px 14px;background:var(--paper);font-size:14px;max-width:620px}
+.parody strong{font-weight:700}
+.facts{background:var(--paper);border:1px solid var(--ink)}
+.facts h2{margin:0;padding:14px 18px;border-bottom:1px solid var(--ink);font:600 11px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:space-between}
+.facts dl{margin:0}
+.facts .row{display:flex;justify-content:space-between;gap:16px;padding:11px 18px;border-bottom:1px solid var(--rule);font-size:14px}
+.facts .row:last-child{border-bottom:0}
+.facts dt{color:var(--grey)}
+.facts dd{margin:0;font-family:var(--mono);font-weight:500;text-align:right}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero{padding-top:44px}}
+
+/* sections */
+section.block{padding:88px 0;border-bottom:1px solid var(--ink)}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:32px;margin-bottom:44px}
+.sec-head .num{font:500 12px/1.4 var(--mono);color:var(--grey);padding-top:12px;border-top:1px solid var(--ink)}
+.sec-head h2{font:900 clamp(38px,5.6vw,72px)/.95 var(--display);letter-spacing:-.03em;margin:0 0 14px}
+.sec-head p{margin:0;max-width:620px;color:#333}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:12px}section.block{padding:64px 0}}
+
+/* comparison */
+.compare{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--ink)}
+.compare th{font:600 11px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;text-align:left;padding:16px 22px;border-bottom:1px solid var(--ink)}
+.compare th:last-child,.compare td:last-child{background:var(--ink);color:#fff}
+.compare td{padding:18px 22px;border-bottom:1px solid var(--rule);font:700 clamp(17px,2vw,24px)/1.2 var(--display);letter-spacing:-.02em;width:50%}
+.compare td:first-child{color:#8b8b87;font-weight:600}
+.compare td:last-child{border-bottom-color:#2a2a2a}
+.compare tr:last-child td{border-bottom:0}
+.compare td .t{display:block;font:500 11px/1 var(--mono);letter-spacing:.06em;color:#9a9a96;margin-top:6px}
+.compare-note{margin-top:14px;font-size:13px;color:var(--grey)}
+
+/* directory */
+.dir-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+.search{flex:1 1 320px;position:relative}
+.search input{width:100%;height:52px;border:1.5px solid var(--ink);background:var(--paper);padding:0 16px 0 44px;font:500 16px var(--body);border-radius:0}
+.search svg{position:absolute;left:15px;top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{border:1px solid var(--ink);background:transparent;padding:7px 12px;font:500 13px/1 var(--body);cursor:pointer;border-radius:0}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.dir-meta{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:10px;font:500 12px var(--mono);color:var(--grey)}
+.dir-list{list-style:none;margin:0;padding:0}
+.co{display:grid;grid-template-columns:96px 1.2fr 1.4fr 190px;gap:20px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--rule)}
+.co .tk{font:600 14px/1 var(--mono)}
+.co .nm{font-weight:700;font-size:16px}
+.co .ds{color:#444;font-size:15px}
+.co .sc{font:500 11px/1.3 var(--mono);color:var(--grey);text-align:right;text-transform:uppercase;letter-spacing:.04em}
+.co mark{background:#e6e6df;color:inherit}
+@media (max-width:820px){.co{grid-template-columns:72px 1fr;gap:4px 14px}.co .ds{grid-column:2}.co .sc{grid-column:2;text-align:left}}
+.dir-empty{padding:40px 0;color:#444}
+.dir-more{display:flex;justify-content:center;margin-top:26px;gap:12px;flex-wrap:wrap}
+.spotlight{margin-top:0;margin-bottom:28px;display:none;background:var(--ink);color:#fff;padding:22px 24px;grid-template-columns:auto 1fr auto;gap:22px;align-items:center}
+.spotlight.on{display:grid}
+.spotlight .tk{font:600 28px/1 var(--mono)}
+.spotlight .nm{font:800 22px/1.15 var(--display);letter-spacing:-.02em}
+.spotlight .ds{color:#cfcfcb}
+.spotlight button{background:none;border:1px solid #666;color:#fff;padding:8px 12px;cursor:pointer;font:500 12px var(--mono)}
+@media (max-width:640px){.spotlight{grid-template-columns:1fr}}
+
+/* IR */
+.ir{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink);background:var(--paper)}
+.release{padding:26px 26px 28px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+.release:nth-child(2n){border-right:0}
+.release .meta{display:flex;justify-content:space-between;gap:12px;font:500 11px/1.3 var(--mono);color:var(--grey);letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+.release h3{font:800 22px/1.18 var(--display);letter-spacing:-.02em;margin:0 0 8px}
+.release p{margin:0;color:#444;font-size:15px}
+.tag{display:inline-block;border:1px solid currentColor;padding:2px 6px}
+@media (max-width:760px){.ir{grid-template-columns:1fr}.release{border-right:0}}
+.ir-foot{margin-top:14px;font-size:13px;color:var(--grey)}
+
+/* apply */
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+form.app{background:var(--paper);border:1px solid var(--ink);padding:28px}
+.form-head{display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:12px;margin-bottom:22px}
+.field{margin-bottom:18px}
+.field label{display:block;font:600 12px/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.field input,.field textarea{width:100%;border:1px solid var(--ink);background:var(--ledger);padding:12px 14px;font:500 16px var(--body);border-radius:0}
+.field textarea{min-height:96px;resize:vertical}
+.field input#f-ticker{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.hint{font-size:12px;color:var(--grey);margin-top:6px}
+.err{font-size:13px;color:var(--down);margin-top:6px;min-height:0}
+.demo-note{font-size:13px;background:var(--ledger);border:1px dashed var(--grey);padding:10px 12px;margin:4px 0 18px}
+.receipt{background:var(--paper);border:1px solid var(--ink);padding:0;display:none}
+.receipt.on{display:block}
+.receipt .top{background:var(--ink);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;font:500 12px var(--mono);letter-spacing:.06em}
+.receipt .body{padding:22px}
+.receipt .row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.receipt .row span:first-child{color:var(--grey)}
+.receipt .row span:last-child{font-family:var(--mono);text-align:right}
+.receipt .verdict{margin:18px 0 6px;font:800 24px/1.15 var(--display);letter-spacing:-.02em}
+.receipt .why{color:#444;margin:0 0 18px}
+.stamp{display:inline-block;border:2px solid var(--down);color:var(--down);font:700 12px/1 var(--mono);letter-spacing:.12em;padding:6px 8px;transform:rotate(-4deg);margin-bottom:10px}
+.sample{background:transparent;border:1px solid var(--rule);padding:18px 22px;margin-top:18px}
+.sample .mono{font-size:13px}
+@media (max-width:860px){.apply-grid{grid-template-columns:1fr}}
+
+/* join */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink);background:var(--paper)}
+.step{padding:28px;border-right:1px solid var(--rule)}
+.step:last-child{border-right:0}
+.step .n{font:500 12px var(--mono);color:var(--grey)}
+.step h3{font:800 24px/1.1 var(--display);letter-spacing:-.02em;margin:10px 0 10px}
+.step p{margin:0 0 18px;color:#444;font-size:15px}
+.ca{display:flex;gap:0;border:1px solid var(--ink);margin-top:8px}
+.ca code{flex:1;padding:12px 14px;font:500 13px/1.3 var(--mono);background:var(--ledger);overflow-wrap:anywhere}
+.ca button{border:0;border-left:1px solid var(--ink);background:var(--ink);color:#fff;font:600 13px var(--body);padding:0 16px;cursor:pointer}
+.ca button:disabled{background:#999;cursor:not-allowed}
+.status{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--mono);letter-spacing:.06em;border:1px solid var(--ink);padding:6px 10px;background:var(--paper);margin-bottom:22px}
+.safety{margin-top:22px;font-size:14px;color:#333;max-width:820px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* footer */
+footer{background:var(--ink);color:#cfcfcb;padding:64px 0 40px}
+footer .big{font:900 clamp(48px,9vw,120px)/.85 var(--display);letter-spacing:-.035em;color:#fff;margin:0 0 30px}
+footer .tag2{font:700 clamp(18px,2.2vw,26px)/1.2 var(--display);color:#fff;margin:0 0 40px;letter-spacing:-.02em}
+footer .disc{border-top:1px solid #333;padding-top:22px;font-size:13px;line-height:1.6;max-width:900px}
+footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:28px;font:500 11px var(--mono);color:#8b8b87;letter-spacing:.04em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.toast{visibility:hidden;position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 18px;font:500 13px var(--mono);transition:transform .25s;z-index:50}
+.toast.on{visibility:visible;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="strip" role="note">
+  <div class="wrap">
+    <span><span class="dot" aria-hidden="true"></span><b>$SPY2</b> · THE OTHER 500 · <span id="strip-status">PRE-LAUNCH</span></span>
+    <span>PARODY MEMECOIN · NOT AN INDEX, FUND OR SECURITY</span>
+  </div>
+</div>
+<div class="tape" aria-hidden="true"><div class="tape-inner" id="tape"></div></div>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a href="#top" class="logo">SPY2.</a>
+    <div class="navlinks">
+      <a href="#difference">The Difference</a>
+      <a href="#constituents">Constituents</a>
+      <a href="#investor-relations">Investor Relations</a>
+      <a href="#apply">Apply</a>
+      <a href="#join">How to Join</a>
+    </div>
+    <a class="btn primary" href="#join" style="height:38px;padding:0 14px;font-size:13px">$SPY2</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="label">Index factsheet · Ref. SPY2/FS/001</div>
+      <h1>THE OTHER 500.</h1>
+      <p class="sub">The S&amp;P 500 tracks America's leading companies. We represent the ones that didn't make the cut.</p>
+      <p class="support">500 imaginary companies. Zero market leaders. One extremely questionable idea.</p>
+      <div class="ctas">
+        <a class="btn primary" id="btn-torch" href="#join">View on Torch</a>
+        <a class="btn" id="btn-x" href="#join">Follow on X</a>
+      </div>
+      <p class="parody"><strong>Please note:</strong> $SPY2 is a parody memecoin. It is not an index, an ETF or a fund, and it does not track, hold or represent any company. Every constituent below is fictional.</p>
+    </div>
+    <aside class="facts" aria-label="Key facts">
+      <h2><span>Key facts</span><span class="mono" style="letter-spacing:0">AS OF: WHENEVER</span></h2>
+      <dl>
+        <div class="row"><dt>Constituents</dt><dd>500 (imaginary)</dd></div>
+        <div class="row"><dt>Market leaders</dt><dd>0</dd></div>
+        <div class="row"><dt>Methodology</dt><dd>Reverse quality</dd></div>
+        <div class="row"><dt>Rebalancing</dt><dd>Quarterly. Nothing changes.</dd></div>
+        <div class="row"><dt>Committee attendance</dt><dd>0 of 0</dd></div>
+        <div class="row"><dt>Benchmark</dt><dd>Everyone else</dd></div>
+        <div class="row"><dt>Underlying assets</dt><dd>None</dd></div>
+      </dl>
+    </aside>
+  </div>
+</header>
+
+<section class="block" id="difference">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">01 — The Difference</div>
+      <div>
+        <h2>Same number. Different companies.</h2>
+        <p>The S&amp;P 500 tracks the winners. We represent everyone else.</p>
+      </div>
+    </div>
+    <table class="compare">
+      <thead><tr><th scope="col">S&amp;P 500</th><th scope="col">The Other 500</th></tr></thead>
+      <tbody>
+        <tr><td>NVIDIA</td><td>Dave's Car Wash<span class="t">DAVE · CLOSED ON TUESDAYS</span></td></tr>
+        <tr><td>Apple</td><td>Gary's Phone Repairs<span class="t">GARY · CASH ONLY</span></td></tr>
+        <tr><td>Microsoft</td><td>Regret Technologies<span class="t">REGRT · PRE-REVENUE SINCE 2008</span></td></tr>
+        <tr><td>Amazon</td><td>Tomorrow Logistics<span class="t">LATE · DELIVERING EVENTUALLY</span></td></tr>
+        <tr><td>Tesla</td><td>Uncle Steve Motors<span class="t">UNCL · RUNS. SOMETIMES.</span></td></tr>
+        <tr><td>Leading businesses</td><td>Questionable decisions</td></tr>
+        <tr><td>Actual index</td><td>Imaginary index</td></tr>
+      </tbody>
+    </table>
+    <p class="compare-note">Company names in the left column are mentioned for comparison only. SPY2 is not affiliated with, and holds nothing in, any of them.</p>
+  </div>
+</section>
+
+<section class="block" id="constituents">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">02 — Our Constituents</div>
+      <div>
+        <h2>500 companies. All of them fictional.</h2>
+        <p>The full roster of The Other 500, across nine sectors of underachievement, from car washes to bonding curves. None of these businesses exist, and none should.</p>
+      </div>
+    </div>
+
+    <div class="spotlight" id="spotlight" aria-live="polite"></div>
+
+    <div class="dir-tools">
+      <label class="search">
+        <span class="sr">Search constituents</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="q" type="search" placeholder="Search by ticker, name or description, e.g. DAVE, dev, gas, printer" autocomplete="off">
+      </label>
+      <button class="btn" id="random" type="button">Random constituent</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by sector"></div>
+    <div class="dir-meta"><span id="count">Showing 500 of 500</span><span>TICKER · COMPANY · NOTE · SECTOR</span></div>
+    <ul class="dir-list" id="list"></ul>
+    <div class="dir-more"><button class="btn" id="more" type="button">Show more constituents</button></div>
+  </div>
+</section>
+
+<section class="block" id="investor-relations">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">03 — Investor Relations</div>
+      <div>
+        <h2>Announcements.</h2>
+        <p>Official communications from the SPY2 investment committee. All releases are fictional satire, and none of them contain financial information.</p>
+      </div>
+    </div>
+    <div class="ir" id="ir"></div>
+    <p class="ir-foot">For press enquiries, please do not contact us.</p>
+  </div>
+</section>
+
+<section class="block" id="apply">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">04 — Apply for Inclusion</div>
+      <div>
+        <h2>Apply to join The Other 500.</h2>
+        <p>Do you run a fictional company that deserves to be rejected? The committee reviews every application. Competence will be viewed negatively.</p>
+      </div>
+    </div>
+    <div class="apply-grid">
+      <form class="app" id="app" novalidate>
+        <div class="form-head"><span class="label" style="color:var(--ink)">Form SPY2-A · Application for inclusion</span><span class="label">Page 1 of 1</span></div>
+        <div class="field">
+          <label for="f-name">Fictional company name</label>
+          <input id="f-name" maxlength="60" placeholder="Gary's WiFi" required>
+          <div class="err" id="e-name"></div>
+        </div>
+        <div class="field">
+          <label for="f-ticker">Fictional ticker</label>
+          <input id="f-ticker" maxlength="5" placeholder="WIFI" required>
+          <div class="hint">2 to 5 letters.</div>
+          <div class="err" id="e-ticker"></div>
+        </div>
+        <div class="field">
+          <label for="f-reason">Reason the company deserves to be rejected</label>
+          <textarea id="f-reason" maxlength="200" placeholder="Internet only works when Gary is home." required></textarea>
+          <div class="hint"><span id="r-count">0</span>/200 characters</div>
+          <div class="err" id="e-reason"></div>
+        </div>
+        <p class="demo-note"><strong>Demo:</strong> applications are not sent or saved yet. Your submission stays in this browser tab, so you can share it on X yourself. A moderated submission inbox arrives with the full launch.</p>
+        <button class="btn primary" type="submit">Submit application</button>
+      </form>
+      <div>
+        <div class="receipt" id="receipt" aria-live="polite"></div>
+        <div class="sample" id="sample">
+          <div class="label" style="margin-bottom:10px">Example of a strong application</div>
+          <div class="mono">COMPANY: Gary's WiFi<br>TICKER: WIFI<br>REASON: Internet only works when Gary is home.</div>
+          <p style="margin:12px 0 0;font-size:14px;color:#444">Accepted applicants may be featured on our X account after review by a human. Please keep submissions fictional: no real businesses or real people.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="join">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">05 — How to Join</div>
+      <div>
+        <h2>How to join.</h2>
+        <p>$SPY2 is a memecoin launching on Torch, a token launchpad on Robinhood Chain. Official links appear below once they go live. Until then, anything claiming to be $SPY2 is not us.</p>
+      </div>
+    </div>
+    <div class="status" id="launch-status"><span class="dot" aria-hidden="true"></span><span>STATUS: PRE-LAUNCH, NOT YET TRADING</span></div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <h3>Torch token page</h3>
+        <p>The only official place $SPY2 launches. The link will appear here when the token is live.</p>
+        <a class="btn primary" id="join-torch" href="#join">View on Torch</a>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h3>Official X account</h3>
+        <p>Daily constituents, earnings delays and committee minutes. The contract address is posted there too.</p>
+        <a class="btn" id="join-x" href="#join">Follow on X</a>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h3>Verified contract address</h3>
+        <p>Check that this matches the address on the Torch page and our X account before you do anything.</p>
+        <div class="ca"><code id="ca">Not yet published</code><button type="button" id="copy-ca" disabled>Copy</button></div>
+      </div>
+    </div>
+    <p class="safety"><strong>Before you buy:</strong> $SPY2 is a parody memecoin with no utility, no underlying assets and no promised returns. Memecoins are extremely volatile and can lose all their value. Only use money you can afford to lose entirely, and check every link and address yourself. We will never DM you first, ask for your seed phrase, or run a giveaway.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="big">THE OTHER 500.</p>
+    <p class="tag2">The S&amp;P 500 is for winners. The Other 500 is for everyone else.</p>
+    <p class="disc">$SPY2 is an independent parody memecoin. It is not affiliated with S&amp;P Dow Jones Indices, SPDR, State Street, Robinhood or Torch. It is not an index fund, ETF, stock, security or representation of underlying assets. It does not track or hold 500 companies. Cryptoassets are high-risk and may lose all their value.</p>
+    <div class="fine"><span>© SPY2. ALL CONSTITUENTS FICTIONAL.</span><span>THE INDEX THAT DIDN'T MAKE THE INDEX.</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===== LAUNCH CONFIG: fill these in at launch, nothing else needs editing ===== */
+const CONFIG = {
+  launched: false,          // set true only once the token is live on Torch
+  torchUrl: "",             // e.g. the official Torch token page URL
+  xUrl: "",                 // e.g. https://x.com/YOUR_HANDLE
+  xHandle: "",              // e.g. TheOther500 (no @), used in share text
+  contractAddress: ""       // verified contract address, copied from Torch
+};
+/* ============================================================================= */
+
+const COMPANIES = [{"t":"DAVE","n":"Dave's Car Wash","d":"Closed on Tuesdays.","s":"Garage Industrials"},{"t":"GMI","n":"Gonna Make It Holdings","d":"Has not made it.","s":"Decentralised Disappointments"},{"t":"REGRT","n":"Regret Technologies","d":"Pre-revenue since 2008.","s":"Failed Technology"},{"t":"BRKE","n":"Broken Capital","d":"Past performance was disappointing.","s":"Questionable Finance"},{"t":"SOCK","n":"Single Sock Supply Co.","d":"Pairs sold separately.","s":"Unnecessary Consumer Goods"},{"t":"DIM","n":"Dim Prospects Power","d":"Bulbs rated 4 watts.","s":"Unprofitable Energy"},{"t":"NOPE","n":"Rejected Industries","d":"Application unsuccessful.","s":"Administrative Mistakes"},{"t":"SOUP","n":"Soup Of The Day Before","d":"Freshness: historical.","s":"Lukewarm Hospitality"},{"t":"TATT","n":"Ex's Name Tattoo Removal","d":"Busiest in February.","s":"Miscellaneous Regrets"},{"t":"GARY","n":"Gary's Phone Repairs","d":"Screen replaced with a slightly different screen.","s":"Garage Industrials"},{"t":"DEV","n":"Dev Is Asleep Labs","d":"Dev is not dead. Dev is asleep.","s":"Decentralised Disappointments"},{"t":"BRB","n":"Be Right Back Technologies","d":"Founder stepped out in 2019.","s":"Failed Technology"},{"t":"OOPS","n":"Accident Capital","d":"Founded by mistake.","s":"Questionable Finance"},{"t":"LID","n":"Lidless Containers Ltd.","d":"Lids available in a different cupboard.","s":"Unnecessary Consumer Goods"},{"t":"DRAU","n":"Drafty Window Utilities","d":"Heating the street since 1987.","s":"Unprofitable Energy"},{"t":"FORM","n":"Form Incorrectly Filled Ltd.","d":"Please use black ink.","s":"Administrative Mistakes"},{"t":"CHIP","n":"Soggy Chip Holdings","d":"Vinegar-forward.","s":"Lukewarm Hospitality"},{"t":"GYM","n":"Gym Membership Unused Ltd.","d":"Joined in January. Attended January 2nd.","s":"Miscellaneous Regrets"},{"t":"LATE","n":"Tomorrow Logistics","d":"Delivering eventually.","s":"Garage Industrials"},{"t":"RDMP","n":"Roadmap Q5 Ventures","d":"All deliverables scheduled for Q5.","s":"Decentralised Disappointments"},{"t":"BUFR","n":"Buffering Systems","d":"Loading. Still loading.","s":"Failed Technology"},{"t":"MEH","n":"Average Holdings","d":"Meeting expectations occasionally.","s":"Questionable Finance"},{"t":"UMBR","n":"Inside-Out Umbrellas","d":"Built for light drizzle and regret.","s":"Unnecessary Consumer Goods"},{"t":"WNDM","n":"Windmill Without Wind Ltd.","d":"Awaiting a breeze.","s":"Unprofitable Energy"},{"t":"REPLY","n":"Reply All Communications","d":"Sent to 4,000 colleagues.","s":"Administrative Mistakes"},{"t":"PINT","n":"Flat Pint Brewing","d":"Head office. No head.","s":"Lukewarm Hospitality"},{"t":"JOUR","n":"Journal First Page Only","d":"Dear diary. The end.","s":"Miscellaneous Regrets"},{"t":"UNCL","n":"Uncle Steve Motors","d":"Runs. Sometimes.","s":"Garage Industrials"},{"t":"GAS","n":"Gas Fees Exceeded Trade Ltd.","d":"Paid £14 to move £9.","s":"Decentralised Disappointments"},{"t":"NFND","n":"Not Found Networks","d":"The page you are looking for has moved. So have we.","s":"Failed Technology"},{"t":"IOU","n":"IOU Partners","d":"Payment to follow.","s":"Questionable Finance"},{"t":"CANDL","n":"Candle Smells Like Candle Co.","d":"Scent: candle.","s":"Unnecessary Consumer Goods"},{"t":"SOLR","n":"Solar Panels (North-Facing)","d":"Generating mostly shade.","s":"Unprofitable Energy"},{"t":"MEET","n":"Could Have Been An Email Ltd.","d":"Meeting about the meeting.","s":"Administrative Mistakes"},{"t":"CAFE","n":"Laptop Café One Coffee Ltd.","d":"Customer has been here six hours.","s":"Lukewarm Hospitality"},{"t":"LING","n":"Language App Streak Lost","d":"Day 3 of Day 1.","s":"Miscellaneous Regrets"},{"t":"DRIP","n":"Leaky Tap Plumbing","d":"Fixed one tap. Started another.","s":"Garage Industrials"},{"t":"LPLK","n":"Liquidity Locked Partners","d":"Liquidity locked. Key lost.","s":"Decentralised Disappointments"},{"t":"PSWD","n":"Password123 Security","d":"Trusted by nobody.","s":"Failed Technology"},{"t":"SOFA","n":"Sofa Cushion Savings & Loan","d":"Assets under management: 85p and a button.","s":"Questionable Finance"},{"t":"FIDG","n":"Fidget Surplus Ltd.","d":"Warehouse full since 2017.","s":"Unnecessary Consumer Goods"},{"t":"HAMS","n":"Hamster Wheel Energy","d":"Output depends on Kevin.","s":"Unprofitable Energy"},{"t":"PEND","n":"Pending Approval Group","d":"Approval pending approval.","s":"Administrative Mistakes"},{"t":"BRGR","n":"Burger Different From Picture","d":"Artist's impression.","s":"Lukewarm Hospitality"},{"t":"GUIT","n":"Guitar In The Corner Ltd.","d":"Knows half of one song.","s":"Miscellaneous Regrets"},{"t":"VAN","n":"White Van Ventures","d":"Tailgating as a business model.","s":"Garage Industrials"},{"t":"PHRS","n":"Seed Phrase On A Post-it","d":"Kept on the fridge for safety.","s":"Decentralised Disappointments"},{"t":"BETA","n":"Permanent Beta Labs","d":"Version 0.1 since launch.","s":"Failed Technology"},{"t":"PIGY","n":"Piggy Bank Asset Management","d":"Liquidity event requires a hammer.","s":"Questionable Finance"},{"t":"SELFI","n":"Selfie Stick Overstock","d":"Reaching for relevance.","s":"Unnecessary Consumer Goods"},{"t":"POTA","n":"Potato Battery Corp.","d":"Powers a clock. Small clock.","s":"Unprofitable Energy"},{"t":"QUEU","n":"Please Hold Services","d":"You are caller number 47.","s":"Administrative Mistakes"},{"t":"CAKE","n":"Cake In The Office Kitchen","d":"Gone by 9:04.","s":"Lukewarm Hospitality"},{"t":"NYR","n":"New Year's Resolutions Ltd.","d":"Expires 14 January.","s":"Miscellaneous Regrets"},{"t":"SKIP","n":"Skip Hire Overflow","d":"Full since collection.","s":"Garage Industrials"},{"t":"AIRD","n":"Airdrop Farming Co-op","d":"412 wallets. One airdrop. 0.3 tokens.","s":"Decentralised Disappointments"},{"t":"CRSH","n":"Crash Report Software","d":"Would you like to send a report? No.","s":"Failed Technology"},{"t":"TENR","n":"Lend Me A Tenner Ltd.","d":"Repayment terms: Friday, probably.","s":"Questionable Finance"},{"t":"SPRK","n":"Novelty Spork Group","d":"Neither spoon nor fork. Committed to both.","s":"Unnecessary Consumer Goods"},{"t":"STTC","n":"Static Electricity Group","d":"Harvesting balloon energy.","s":"Unprofitable Energy"},{"t":"STMP","n":"Rubber Stamp Authority","d":"Approved without reading.","s":"Administrative Mistakes"},{"t":"MENU","n":"Sticky Laminated Menus Ltd.","d":"Peel to view specials.","s":"Lukewarm Hospitality"},{"t":"TXTX","n":"Texted The Ex Holdings","d":"Seen.","s":"Miscellaneous Regrets"},{"t":"GRDN","n":"Garden Shed Holdings","d":"Headquarters, storage and server room.","s":"Garage Industrials"},{"t":"WHTP","n":"Whitepaper Two Paragraphs Ltd.","d":"Tokenomics: vibes.","s":"Decentralised Disappointments"},{"t":"REBT","n":"Have You Tried Turning It Off Inc.","d":"Support line closes at 4pm.","s":"Failed Technology"},{"t":"FEES","n":"Hidden Fees Bank","d":"Transparency available for an additional charge.","s":"Questionable Finance"},{"t":"MUG","n":"World's Okayest Mug Co.","d":"Holds liquid. Mostly.","s":"Unnecessary Consumer Goods"},{"t":"PILOT","n":"Pilot Light Out Gas Co.","d":"Please call an engineer. Our engineer.","s":"Unprofitable Energy"},{"t":"MEMO","n":"Memo Nobody Read Ltd.","d":"Circulated widely. Read narrowly.","s":"Administrative Mistakes"},{"t":"BUFF","n":"All You Can Eat (Within Reason)","d":"Reason enforced by staff.","s":"Lukewarm Hospitality"},{"t":"FRNG","n":"Fringe Cut At Home Ltd.","d":"Growing out since spring.","s":"Miscellaneous Regrets"},{"t":"LADR","n":"Ladder Leaning Services","d":"Health and safety pending.","s":"Garage Industrials"},{"t":"BAGS","n":"Bag Holder Logistics","d":"Holding since the top.","s":"Decentralised Disappointments"},{"t":"SGNL","n":"One Bar Of Signal Telecom","d":"Coverage available by the window.","s":"Failed Technology"},{"t":"OVRD","n":"Overdraft Lifestyle Group","d":"Living beyond our means, responsibly.","s":"Questionable Finance"},{"t":"GLUE","n":"Glue That Doesn't Ltd.","d":"Bonds temporarily.","s":"Unnecessary Consumer Goods"},{"t":"EXTN","n":"Extension Lead Daisy Chain","d":"Seven adaptors deep.","s":"Unprofitable Energy"},{"t":"CCLD","n":"Accidentally Cc'd Partners","d":"Now knows too much.","s":"Administrative Mistakes"},{"t":"HOTL","n":"One-Star Hotel Holdings","d":"Star self-awarded.","s":"Lukewarm Hospitality"},{"t":"SKY","n":"Expired Skydive Voucher","d":"Courage arrived late.","s":"Miscellaneous Regrets"},{"t":"MOTF","n":"MOT Fail Garage","d":"Advisories: all of them.","s":"Garage Industrials"},{"t":"GM","n":"Engagement Farming Media","d":"Posted \"gm\" 1,400 days in a row.","s":"Decentralised Disappointments"},{"t":"APPZ","n":"An App For That Ltd.","d":"There's an app for that. Not that one.","s":"Failed Technology"},{"t":"BUYH","n":"Buy High Advisors","d":"Sell low is our second service.","s":"Questionable Finance"},{"t":"BANS","n":"Banana Slicer Industries","d":"Solving a problem knives already solved.","s":"Unnecessary Consumer Goods"},{"t":"METR","n":"Estimated Meter Readings Ltd.","d":"Bills based on astrology.","s":"Unprofitable Energy"},{"t":"SIGN","n":"Signature Missing Ltd.","d":"Please sign here, here and there.","s":"Administrative Mistakes"},{"t":"BNB","n":"Bed And No Breakfast","d":"Breakfast ended at 8:00. It's 8:01.","s":"Lukewarm Hospitality"},{"t":"BOAT","n":"Boat Bought Impulsively","d":"Second-happiest day pending.","s":"Miscellaneous Regrets"},{"t":"CABS","n":"Cab Arriving In 2 Minutes","d":"For the last 25 minutes.","s":"Garage Industrials"},{"t":"SNIP","n":"Sniped In Block One Ltd.","d":"Launch bought entirely by a bot.","s":"Decentralised Disappointments"},{"t":"CHRG","n":"Wrong Charger Corp.","d":"Compatible with nothing you own.","s":"Failed Technology"},{"t":"HODL","n":"Forgot My Password Capital","d":"Long-term holder by necessity.","s":"Questionable Finance"},{"t":"HAT","n":"Hat For Your Hat Co.","d":"Accessories for accessories.","s":"Unnecessary Consumer Goods"},{"t":"FLSH","n":"Dying Flashlight Supply","d":"Bright for four seconds.","s":"Unprofitable Energy"},{"t":"FILE","n":"Misfiled Records Inc.","d":"Archived under \"misc\".","s":"Administrative Mistakes"},{"t":"TIPJ","n":"Empty Tip Jar Ltd.","d":"Seed money: one button.","s":"Lukewarm Hospitality"},{"t":"POD","n":"Podcast Two Episodes Ltd.","d":"Episode three in development.","s":"Miscellaneous Regrets"},{"t":"COUR","n":"Card Through The Door Couriers","d":"Sorry we missed you. We didn't knock.","s":"Garage Industrials"},{"t":"WCHN","n":"Sent To Wrong Chain Ltd.","d":"Funds safe. Location unknown.","s":"Decentralised Disappointments"},{"t":"UPDT","n":"Update Required Inc.","d":"Please restart to continue disappointing.","s":"Failed Technology"},{"t":"CHQ","n":"Cheque Is In The Post Ltd.","d":"Posted. Definitely.","s":"Questionable Finance"},{"t":"PETR","n":"Pet Rock Revival","d":"Low maintenance. Low enthusiasm.","s":"Unnecessary Consumer Goods"},{"t":"BLEED","n":"Radiator Bleeding Services","d":"Gurgles available on request.","s":"Unprofitable Energy"},{"t":"STAP","n":"Stapler Missing Holdings","d":"Last seen on Kevin's desk.","s":"Administrative Mistakes"},{"t":"KEBB","n":"3am Kebab Partners","d":"Good decisions available until 2:59.","s":"Lukewarm Hospitality"},{"t":"NOVL","n":"Unfinished Novel Holdings","d":"Chapter one rewritten 40 times.","s":"Miscellaneous Regrets"},{"t":"MOVR","n":"Man With A Van (And A Bad Back)","d":"Lifting with the knees, mostly.","s":"Garage Industrials"},{"t":"WAGMI","n":"We're All Gonna Make It Group","d":"Some of us. Possibly.","s":"Decentralised Disappointments"},{"t":"CLOD","n":"Cloud-ish Storage","d":"Your files are somewhere.","s":"Failed Technology"},{"t":"GUSS","n":"Gut Feeling Investments","d":"Due diligence: vibes.","s":"Questionable Finance"},{"t":"CABL","n":"Tangled Cable Manufacturing","d":"Pre-knotted for convenience.","s":"Unnecessary Consumer Goods"},{"t":"KETL","n":"Kettle Overfilled Ltd.","d":"Boiling 1.7 litres for one cup.","s":"Unprofitable Energy"},{"t":"RSET","n":"Password Reset Department","d":"Your new password cannot be any password.","s":"Administrative Mistakes"},{"t":"MICRO","n":"Office Microwave Fish Ltd.","d":"Reheated. Regretted.","s":"Lukewarm Hospitality"},{"t":"ESSN","n":"Essential Oils From A Friend","d":"Healing claims withdrawn.","s":"Miscellaneous Regrets"},{"t":"PAINT","n":"Magnolia Only Decorators","d":"Any colour you like, as long as it's magnolia.","s":"Garage Industrials"},{"t":"NGMI","n":"Not Gonna Make It Advisors","d":"Accurate forecasts. Unwelcome.","s":"Decentralised Disappointments"},{"t":"DONGL","n":"Dongle Dependency Group","d":"Requires an adapter for the adapter.","s":"Failed Technology"},{"t":"TIPS","n":"Bloke At The Pub Research","d":"Has a tip. Won't say where from.","s":"Questionable Finance"},{"t":"KEYS","n":"Lost Keys Holdings","d":"Last seen in the other coat.","s":"Unnecessary Consumer Goods"},{"t":"TIDE","n":"Low Tide Power","d":"Back in six hours.","s":"Unprofitable Energy"},{"t":"DEAD","n":"Missed Deadline Partners","d":"Due yesterday. Delivered thoughtfully late.","s":"Administrative Mistakes"},{"t":"WINE","n":"House Wine Holdings","d":"Pairs with mistakes.","s":"Lukewarm Hospitality"},{"t":"TMSH","n":"Timeshare Presentation Survivors","d":"Attended for the free lunch.","s":"Miscellaneous Regrets"},{"t":"LOCK","n":"Locksmith Locked Out Ltd.","d":"Will be there once someone lets him in.","s":"Garage Industrials"},{"t":"DYOR","n":"Did Our Own Research Ltd.","d":"Read the first post of the thread.","s":"Decentralised Disappointments"},{"t":"BLKC","n":"Blockchain For Sandwiches","d":"Decentralising lunch since 2017.","s":"Failed Technology"},{"t":"AUDT","n":"Unaudited Statements Ltd.","d":"Trust us.","s":"Questionable Finance"},{"t":"REMT","n":"Remote Under The Sofa Ltd.","d":"Location undisclosed.","s":"Unnecessary Consumer Goods"},{"t":"FUSN","n":"Cold Fusion Breakthroughs","d":"Breakthrough scheduled for next decade. Every decade.","s":"Unprofitable Energy"},{"t":"MINS","n":"Minutes Not Taken Ltd.","d":"Nobody remembers what was agreed.","s":"Administrative Mistakes"},{"t":"TAPAS","n":"Tapas Portion Control","d":"Three olives. Eight pounds.","s":"Lukewarm Hospitality"},{"t":"SNZE","n":"Just Five More Minutes Ltd.","d":"Snoozed three times.","s":"Miscellaneous Regrets"},{"t":"ROOF","n":"Worse Than It Looks Roofing","d":"Quote revised upward from the ladder.","s":"Garage Industrials"},{"t":"NFA","n":"Not Financial Advice Partners","d":"Also not advice of any kind.","s":"Decentralised Disappointments"},{"t":"HDST","n":"Headset Nausea Interactive","d":"Immersive for up to nine minutes.","s":"Failed Technology"},{"t":"CRYP","n":"Crypto Cousin Advisory","d":"Will explain at Christmas.","s":"Questionable Finance"},{"t":"CHAIR","n":"Wobbly Chair Furnishings","d":"Fixed with a folded beer mat.","s":"Unnecessary Consumer Goods"},{"t":"BIOF","n":"Leftover Curry Biofuel","d":"Smells promising.","s":"Unprofitable Energy"},{"t":"AGND","n":"Agenda TBC Group","d":"Items to be confirmed. Meeting confirmed anyway.","s":"Administrative Mistakes"},{"t":"QUIZ","n":"Pub Quiz Last Place Team","d":"The team name was the best part.","s":"Lukewarm Hospitality"},{"t":"GOSS","n":"Group Chat Screenshot Ltd.","d":"Sent to the wrong group.","s":"Miscellaneous Regrets"},{"t":"DRIV","n":"Driving School (Hill Starts Extra)","d":"Pass rate: encouraging words.","s":"Garage Industrials"},{"t":"JEET","n":"Sold Too Early Capital","d":"Sold at 2x. We don't talk about what happened next.","s":"Decentralised Disappointments"},{"t":"FAXX","n":"Fax Forward Industries","d":"The future is paper, sent slowly.","s":"Failed Technology"},{"t":"SPLIT","n":"Split The Bill Fintech","d":"You had the starter though.","s":"Questionable Finance"},{"t":"SHOE","n":"Left Shoe Only Footwear","d":"Right shoe in development.","s":"Unnecessary Consumer Goods"},{"t":"STEAM","n":"Steam Powered Phones Ltd.","d":"Call quality: misty.","s":"Unprofitable Energy"},{"t":"POLC","n":"Policy Under Review Ltd.","d":"Under review since 2015.","s":"Administrative Mistakes"},{"t":"KARK","n":"Karaoke Night Incident Ltd.","d":"Microphone confiscated.","s":"Lukewarm Hospitality"},{"t":"ADVC","n":"Unsolicited Advice Partners","d":"Free. Overpriced.","s":"Miscellaneous Regrets"},{"t":"WELD","n":"Welding In Flip-Flops Ltd.","d":"Fearless. Unqualified.","s":"Garage Industrials"},{"t":"APED","n":"Aped In Holdings","d":"Read the contract afterwards.","s":"Decentralised Disappointments"},{"t":"PRNT","n":"Gary's Printers","d":"The printer is jammed.","s":"Failed Technology"},{"t":"BUDG","n":"Abandoned Budget Spreadsheet","d":"Last updated January 3rd.","s":"Questionable Finance"},{"t":"GIFT","n":"Regift Logistics","d":"Card still attached.","s":"Unnecessary Consumer Goods"},{"t":"DYNM","n":"Bicycle Dynamo Grid","d":"Lights go off at traffic lights.","s":"Unprofitable Energy"},{"t":"HR","n":"Human Resources (Mostly Paper)","d":"Your complaint has been filed. Literally.","s":"Administrative Mistakes"},{"t":"PIZZA","n":"Pizza Arrived Cold Ltd.","d":"30 minutes or eventually.","s":"Lukewarm Hospitality"},{"t":"SPOI","n":"Accidental Spoilers Ltd.","d":"Sorry. You'll still enjoy it.","s":"Miscellaneous Regrets"},{"t":"SCAF","n":"Scaffold Up Since 2019","d":"Building work imminent.","s":"Garage Industrials"},{"t":"FUD","n":"Fear, Uncertainty & Doubt Consulting","d":"Available for all occasions.","s":"Decentralised Disappointments"},{"t":"SPAM","n":"Unsubscribe Solutions","d":"You have been added to a new list.","s":"Failed Technology"},{"t":"PENS","n":"Pension Pending Group","d":"Retirement planned for later.","s":"Questionable Finance"},{"t":"JAR","n":"Unopenable Jar Co.","d":"Please ask someone stronger.","s":"Unnecessary Consumer Goods"},{"t":"OILY","n":"Chip Fat Diesel Cooperative","d":"Car smells of Friday.","s":"Unprofitable Energy"},{"t":"TEAM","n":"Team Building Incident Ltd.","d":"Trust fall. No catch.","s":"Administrative Mistakes"},{"t":"DINR","n":"Infinite Refill Diner Coffee","d":"Quantity over quality.","s":"Lukewarm Hospitality"},{"t":"TRIP","n":"Holiday Booked Wrong Year","d":"The flight left in 2025.","s":"Miscellaneous Regrets"},{"t":"POND","n":"Koi Pond Leak Services","d":"Fish relocated to the bath.","s":"Garage Industrials"},{"t":"HOPE","n":"Hopium Wholesale","d":"Supply unlimited. Demand cyclical.","s":"Decentralised Disappointments"},{"t":"CAPT","n":"Captcha Holdings","d":"Select all images containing regret.","s":"Failed Technology"},{"t":"TAXX","n":"Tax Return Tomorrow LLP","d":"Filed at 11:58pm, every year.","s":"Questionable Finance"},{"t":"PEN","n":"Pen That Doesn't Write Ltd.","d":"Works after scribbling.","s":"Unnecessary Consumer Goods"},{"t":"VOLT","n":"Low Voltage Ambitions","d":"Underpowered by design.","s":"Unprofitable Energy"},{"t":"SYNE","n":"Synergy Consultants","d":"Aligned. Leveraged. Unclear.","s":"Administrative Mistakes"},{"t":"MILK","n":"Milk Gone Off Dairy","d":"Best before last week.","s":"Lukewarm Hospitality"},{"t":"CAMP","n":"Camping Was A Mistake Co.","d":"Tent assembled inside out.","s":"Miscellaneous Regrets"},{"t":"LAWN","n":"Lawn Mower Won't Start Co.","d":"Pulled the cord. Pulled a shoulder.","s":"Garage Industrials"},{"t":"COPE","n":"Copium Refinery","d":"Running at full capacity.","s":"Decentralised Disappointments"},{"t":"SMRT","n":"Smart Toaster Co.","d":"Requires a firmware update before toast.","s":"Failed Technology"},{"t":"BNPL","n":"Buy Now Panic Later Ltd.","d":"Instalment four of six.","s":"Questionable Finance"},{"t":"TAPE","n":"Can't Find The End Tape Co.","d":"Edge located 2021.","s":"Unnecessary Consumer Goods"},{"t":"FUSE","n":"Blown Fuse Electrical","d":"Tripped the whole street.","s":"Unprofitable Energy"},{"t":"KPI","n":"KPI Of The Month Ltd.","d":"Metric changed to show improvement.","s":"Administrative Mistakes"},{"t":"VEND","n":"Vending Machine Kept My Coin","d":"Crisps suspended mid-air.","s":"Lukewarm Hospitality"},{"t":"PLAN","n":"Five-Year Plan (Year Six)","d":"Revising.","s":"Miscellaneous Regrets"},{"t":"SHED","n":"Shed Assembly Disputes","d":"Door fitted upside down.","s":"Garage Industrials"},{"t":"SOON","n":"Soon Technologies","d":"Launching soon. Please stop asking.","s":"Decentralised Disappointments"},{"t":"BTRY","n":"Battery Anxiety Labs","d":"12% remaining since founding.","s":"Failed Technology"},{"t":"LTTO","n":"Lottery-Based Retirement Plans","d":"Strategy unchanged since 1994.","s":"Questionable Finance"},{"t":"BULB","n":"Flickering Bulb Lighting","d":"Ambience by accident.","s":"Unnecessary Consumer Goods"},{"t":"GRID","n":"Off-Grid Off-Topic Ltd.","d":"Disconnected in every sense.","s":"Unprofitable Energy"},{"t":"OKR","n":"OKR Rewrite Group","d":"Objectives revised quarterly. Results pending.","s":"Administrative Mistakes"},{"t":"BKFS","n":"Full Breakfast Half Cooked","d":"Egg runny. Everything else also runny.","s":"Lukewarm Hospitality"},{"t":"NETW","n":"Networking Event Corner Ltd.","d":"Spoke to the buffet.","s":"Miscellaneous Regrets"},{"t":"CARP","n":"Wonky Shelf Carpentry","d":"Spirit level kept for decoration.","s":"Garage Industrials"},{"t":"WEN","n":"Wen Launch Ltd.","d":"Wen.","s":"Decentralised Disappointments"},{"t":"DRFT","n":"Drafts Folder Inc.","d":"Unsent since 2014.","s":"Failed Technology"},{"t":"ATM","n":"Out Of Service Cash Machines","d":"Nearest working machine: elsewhere.","s":"Questionable Finance"},{"t":"DUVET","n":"Duvet Cover Wrestling League","d":"Assembly takes 40 minutes and a friend.","s":"Unnecessary Consumer Goods"},{"t":"PLUG","n":"Socket Behind The Sofa Ltd.","d":"Hard to reach. Harder to justify.","s":"Unprofitable Energy"},{"t":"CHAS","n":"Just Chasing This Ltd.","d":"Gentle reminder #6.","s":"Administrative Mistakes"},{"t":"CHEF","n":"Celebrity Chef (Uncle Steve)","d":"Famous on our street.","s":"Lukewarm Hospitality"},{"t":"CLUB","n":"Book Club Wine Club","d":"Book not read. Wine read thoroughly.","s":"Miscellaneous Regrets"},{"t":"DIY","n":"DIY Abandoned Halfway Ltd.","d":"Feature wall: half a feature.","s":"Garage Industrials"},{"t":"LAMBO","n":"Supercar Savings Fund (Bus Pass)","d":"Currently taking the 38.","s":"Decentralised Disappointments"},{"t":"ALGO","n":"Vibes-Based Algorithms","d":"Model trained on one man's opinion.","s":"Failed Technology"},{"t":"SAFE","n":"Under The Mattress Trust","d":"Low yield. Lumpy.","s":"Questionable Finance"},{"t":"SCRW","n":"Flat-Pack Leftover Screws","d":"Spare parts. From what, unknown.","s":"Unnecessary Consumer Goods"},{"t":"MOTN","n":"Perpetual Motion Machine Co.","d":"Stopped Thursday.","s":"Unprofitable Energy"},{"t":"ERRT","n":"Errata Publishing","d":"Corrections to the corrections.","s":"Administrative Mistakes"},{"t":"NAPK","n":"Napkin Business Plans Ltd.","d":"Strategy written in ketchup.","s":"Lukewarm Hospitality"},{"t":"HUG","n":"Handshake Went For Hug Ltd.","d":"Awkward on contact.","s":"Miscellaneous Regrets"},{"t":"TOOL","n":"Borrowed Drill Never Returned","d":"Neighbour has it.","s":"Garage Industrials"},{"t":"CHART","n":"Chart Astrology Partners","d":"Sees a head and shoulders in everything.","s":"Decentralised Disappointments"},{"t":"PIVT","n":"Pivot Again Ventures","d":"Now a podcast.","s":"Failed Technology"},{"t":"FOMO","n":"Bought The Top Partners","d":"Arrived just in time to leave.","s":"Questionable Finance"},{"t":"CRUMB","n":"Crumbs In The Keyboard Ltd.","d":"Snacks, stored.","s":"Unnecessary Consumer Goods"},{"t":"WATT","n":"What Watt Utilities","d":"Nobody knows the units.","s":"Unprofitable Energy"},{"t":"TEMP","n":"Temp Who Runs Everything","d":"Started Monday. Now acting CFO.","s":"Administrative Mistakes"},{"t":"FONDU","n":"Fondue Set Unused Ltd.","d":"Gift from 1998.","s":"Lukewarm Hospitality"},{"t":"NAMX","n":"Forgot Your Name Holdings","d":"Hey, you.","s":"Miscellaneous Regrets"},{"t":"TAXI","n":"Unlicensed Cab Opinions","d":"Fares fixed. Opinions free.","s":"Garage Industrials"},{"t":"LINES","n":"Lines On A Chart Research","d":"Drew a line. Price went the other way.","s":"Decentralised Disappointments"},{"t":"NFTB","n":"Bored Of It Collectibles","d":"Floor price: the floor.","s":"Failed Technology"},{"t":"SHRT","n":"Shorted Our Own Stock Ltd.","d":"It went up.","s":"Questionable Finance"},{"t":"DIET","n":"Diet Water Beverages","d":"Now with zero.","s":"Unnecessary Consumer Goods"},{"t":"WARMU","n":"Energy Saving Bulb Warm-Up Ltd.","d":"Full brightness by March.","s":"Unprofitable Energy"},{"t":"GHST","n":"Recruitment Ghosting Ltd.","d":"We'll be in touch.","s":"Administrative Mistakes"},{"t":"BBQ","n":"Barbecue Rained Off Ltd.","d":"Sausages finished in the oven.","s":"Lukewarm Hospitality"},{"t":"ONEW","n":"Wrong Way Down A One-Way Ltd.","d":"Committed to it.","s":"Miscellaneous Regrets"},{"t":"BINN","n":"Parcel In The Bin Delivery","d":"Safe place selected.","s":"Garage Industrials"},{"t":"TA","n":"Technical Analysis By Crayon","d":"Support level drawn freehand.","s":"Decentralised Disappointments"},{"t":"RNDR","n":"Rendering Please Wait","d":"Estimated time remaining: yes.","s":"Failed Technology"},{"t":"HEDG","n":"Hedge Trimming Fund","d":"Not that kind of hedge fund.","s":"Questionable Finance"},{"t":"SANDL","n":"Socks And Sandals Outfitters","d":"Style questioned. Comfort confirmed.","s":"Unnecessary Consumer Goods"},{"t":"FIRE","n":"Damp Firewood Supplies","d":"Mostly smoke.","s":"Unprofitable Energy"},{"t":"ORGC","n":"Org Chart Redrawn Weekly","d":"Reporting lines: a circle.","s":"Administrative Mistakes"},{"t":"LUNC","n":"Desk Lunch Crumbs Ltd.","d":"Al desko dining.","s":"Lukewarm Hospitality"},{"t":"SUNK","n":"Sunk Cost Partners","d":"Too far in to stop now.","s":"Miscellaneous Regrets"},{"t":"SHOP","n":"Corner Shop Closed For Lunch","d":"Back in 5 minutes since 1pm.","s":"Garage Industrials"},{"t":"WHAL","n":"One Whale Holdings","d":"Owns most of the supply. Very supportive.","s":"Decentralised Disappointments"},{"t":"CMNT","n":"Comment Section Media","d":"Engagement up. Morale down.","s":"Failed Technology"},{"t":"GRPH","n":"Line Goes Down Analytics","d":"Charts available upside down on request.","s":"Questionable Finance"},{"t":"BAG","n":"Bag For Life Collection","d":"Owns 400 of them.","s":"Unnecessary Consumer Goods"},{"t":"GASS","n":"Baked Bean Methane Research","d":"Funding source unclear. Odour clear.","s":"Unprofitable Energy"},{"t":"PERMT","n":"Permit Office (Closed)","d":"Open Wednesdays 10:00 to 10:15.","s":"Administrative Mistakes"},{"t":"SPOON","n":"Greasy Spoon Holdings","d":"Cutlery included. Clean cutlery extra.","s":"Lukewarm Hospitality"},{"t":"SURP","n":"Surprise Party Spoiled Ltd.","d":"Act surprised.","s":"Miscellaneous Regrets"},{"t":"LNDR","n":"Odd Socks Launderette","d":"Strategic partner of Single Sock Supply.","s":"Garage Industrials"},{"t":"DMS","n":"Check Your DMs Ltd.","d":"We will never DM you first. They will.","s":"Decentralised Disappointments"},{"t":"MUTE","n":"You're On Mute Communications","d":"Has been talking for six minutes.","s":"Failed Technology"},{"t":"EGGS","n":"All Eggs One Basket Capital","d":"Diversification is a later-stage concern.","s":"Questionable Finance"},{"t":"PLNT","n":"Plastic Plant Nursery","d":"Survives neglect.","s":"Unnecessary Consumer Goods"},{"t":"RAIN","n":"Rain Harvest Energy (Drought)","d":"Water not found.","s":"Unprofitable Energy"},{"t":"SLID","n":"Slide 47 Of 112 Ltd.","d":"Will keep this brief.","s":"Administrative Mistakes"},{"t":"TEAB","n":"Teabag Left In Too Long","d":"Strength: concerning.","s":"Lukewarm Hospitality"},{"t":"SEAT","n":"Middle Seat Holdings","d":"Both armrests taken.","s":"Miscellaneous Regrets"},{"t":"DOGW","n":"Dog Walker With Twelve Dogs","d":"Walked by the dogs.","s":"Garage Industrials"},{"t":"MOD","n":"Unpaid Moderator Collective","d":"Banned the founder by accident.","s":"Decentralised Disappointments"},{"t":"LGCY","n":"Legacy Code Holdings","d":"Nobody knows how it works. Nobody touches it.","s":"Failed Technology"},{"t":"CRDT","n":"Credit Score 412 Ltd.","d":"Working on it.","s":"Questionable Finance"},{"t":"GADGT","n":"Kitchen Gadget Drawer Co.","d":"Used once. Kept forever.","s":"Unnecessary Consumer Goods"},{"t":"HYDR","n":"Hydro Power From A Tap","d":"Monthly bill exceeds output.","s":"Unprofitable Energy"},{"t":"OOO","n":"Out Of Office Holdings","d":"Back on the 3rd. Month unclear.","s":"Administrative Mistakes"},{"t":"JAM","n":"Jam Doughnut No Jam Ltd.","d":"Filling not found.","s":"Lukewarm Hospitality"},{"t":"STEP","n":"Step Count Faked Ltd.","d":"Phone went in the washing machine.","s":"Miscellaneous Regrets"},{"t":"STOR","n":"Self-Storage Of Things Never Needed","d":"£90 a month for a rowing machine.","s":"Garage Industrials"},{"t":"BOTS","n":"Group Chat 40k Members","d":"38,000 bots. Two humans. Both mods.","s":"Decentralised Disappointments"},{"t":"TODO","n":"TODO Fix Later Inc.","d":"Comment dated 2011.","s":"Failed Technology"},{"t":"JUNK","n":"Junk Bond Recycling","d":"Turning junk into slightly different junk.","s":"Questionable Finance"},{"t":"LAMP","n":"Lava Lamp Revival Fund","d":"Still warming up.","s":"Unnecessary Consumer Goods"},{"t":"SNOW","n":"Snow-Powered Heating","d":"Inverse correlation discovered.","s":"Unprofitable Energy"},{"t":"NDA","n":"Overly Broad NDA Ltd.","d":"You can't even tell anyone about this.","s":"Administrative Mistakes"},{"t":"CRKR","n":"Cracker Joke Publishing","d":"Each joke worse than the paper hat.","s":"Lukewarm Hospitality"},{"t":"PHON","n":"Phone 1% Battery Ltd.","d":"Directions lost mid-route.","s":"Miscellaneous Regrets"},{"t":"KEYC","n":"Key Cutting And Shoe Repair","d":"Your key now fits a shoe.","s":"Garage Industrials"},{"t":"RAID","n":"Reply Raid Logistics","d":"Replying \"this\" under every post.","s":"Decentralised Disappointments"},{"t":"QRCD","n":"QR Code Menus Ltd.","d":"Please scan to feel old.","s":"Failed Technology"},{"t":"DIVD","n":"Dividend Of Gratitude Ltd.","d":"Pays shareholders in thank-you notes.","s":"Questionable Finance"},{"t":"NOVT","n":"Novelty Tie Group","d":"For when you have given up on meetings.","s":"Unnecessary Consumer Goods"},{"t":"CLIM","n":"Climbing Frame Kinetic Energy","d":"Children unionised.","s":"Unprofitable Energy"},{"t":"LIVE","n":"Accidentally Shared Screen Co.","d":"Everyone saw the other tab.","s":"Administrative Mistakes"},{"t":"FRYP","n":"Deep Fried Everything Co.","d":"Now frying salad.","s":"Lukewarm Hospitality"},{"t":"SNAK","n":"Midnight Snack Investigations","d":"Fridge light incriminating.","s":"Miscellaneous Regrets"},{"t":"COSY","n":"Cosy Description Estate Agents","d":"\"Cosy\" means small. \"Characterful\" means damp.","s":"Garage Industrials"},{"t":"KOL","n":"Paid Shill Disclosures Ltd.","d":"Disclosure pending.","s":"Decentralised Disappointments"},{"t":"SEEN","n":"Seen 4:12pm Messaging","d":"Delivered. Read. Ignored.","s":"Failed Technology"},{"t":"FRCL","n":"Forecast Unclear Partners","d":"Outlook: cloudy with a chance of loss.","s":"Questionable Finance"},{"t":"CLCK","n":"Clock One Hour Wrong Co.","d":"Correct for half the year.","s":"Unnecessary Consumer Goods"},{"t":"TURB","n":"Turbine Facing Wrong Way","d":"Installed by a confident man.","s":"Unprofitable Energy"},{"t":"TRAIN","n":"Mandatory Training Module Ltd.","d":"Click next 47 times.","s":"Administrative Mistakes"},{"t":"NOOD","n":"Instant Noodles Fine Dining","d":"Two-minute tasting menu.","s":"Lukewarm Hospitality"},{"t":"GIGG","n":"Band Practice In The Garage","d":"Two songs. Both covers.","s":"Miscellaneous Regrets"},{"t":"VALE","n":"Valet Parking In A Field","d":"Retrieval by tractor.","s":"Garage Industrials"},{"t":"ALPHA","n":"Leaked Alpha Ltd.","d":"Priced in by the time you read it.","s":"Decentralised Disappointments"},{"t":"COOKI","n":"Accept All Cookies Ltd.","d":"Reject is in the second menu.","s":"Failed Technology"},{"t":"VAULT","n":"Leaky Vault Bank","d":"Vault door left ajar for ventilation.","s":"Questionable Finance"},{"t":"BALM","n":"Lip Balm Lost In The Wash","d":"Now part of every shirt.","s":"Unnecessary Consumer Goods"},{"t":"NRGY","n":"Energy Drink Grid Storage","d":"Vibrating, not generating.","s":"Unprofitable Energy"},{"t":"CMPL","n":"Compliance Checkbox Inc.","d":"Ticked without reading. Like everyone.","s":"Administrative Mistakes"},{"t":"TABL","n":"Table By The Toilets","d":"Reservation honoured.","s":"Lukewarm Hospitality"},{"t":"TOO","n":"Said You Too To The Waiter","d":"Enjoy your meal. You too.","s":"Miscellaneous Regrets"},{"t":"TOW","n":"Tow Truck Also Broken Down","d":"Awaiting recovery.","s":"Garage Industrials"},{"t":"CALL","n":"Called It Holdings","d":"Called it after it happened.","s":"Decentralised Disappointments"},{"t":"ROBO","n":"Robot That Falls Over Inc.","d":"Demonstrations available on request and on the floor.","s":"Failed Technology"},{"t":"PAWN","n":"Uncle Steve's Pawn & Go","d":"Your guitar is safe with Steve. Mostly.","s":"Questionable Finance"},{"t":"STKR","n":"Bumper Sticker Philosophy","d":"Profound at 30mph.","s":"Unnecessary Consumer Goods"},{"t":"PWRB","n":"Power Bank Uncharged Ltd.","d":"Emergency backup for nothing.","s":"Unprofitable Energy"},{"t":"ESCL","n":"Escalation Matrix Group","d":"Escalated back to the person who sent it.","s":"Administrative Mistakes"},{"t":"COCT","n":"Cocktail Mostly Ice Ltd.","d":"Garnish is the main ingredient.","s":"Lukewarm Hospitality"},{"t":"RSTR","n":"Restaurant Booked Wrong Night","d":"Tuesday energy on a Monday.","s":"Miscellaneous Regrets"},{"t":"WSHR","n":"Washing Machine Walks Across Floor","d":"Spin cycle includes travel.","s":"Garage Industrials"},{"t":"MEME","n":"Meme Recycling Plant","d":"Same joke. New ticker.","s":"Decentralised Disappointments"},{"t":"DRON","n":"Drone Delivery (Nearby)","d":"Delivered to a tree.","s":"Failed Technology"},{"t":"GOLDF","n":"Goldfish Memory Trading","d":"Bought the same dip four times.","s":"Questionable Finance"},{"t":"WALL","n":"Inspirational Wall Art Ltd.","d":"Live. Laugh. Leave.","s":"Unnecessary Consumer Goods"},{"t":"EMBR","n":"Last Ember Barbecue Co.","d":"Burgers raw in the middle.","s":"Unprofitable Energy"},{"t":"VERS","n":"Final_Final_v3 Document Control","d":"Which one is final? Yes.","s":"Administrative Mistakes"},{"t":"SNDW","n":"Petrol Station Sandwich Group","d":"Prawn, ambient.","s":"Lukewarm Hospitality"},{"t":"HOLI","n":"Holiday Slideshow Ltd.","d":"448 slides. One sunset.","s":"Miscellaneous Regrets"},{"t":"GUTR","n":"Gutter Cleaning (Rain Delayed)","d":"Rescheduled due to the reason for the job.","s":"Garage Industrials"},{"t":"FORK","n":"Fork Of A Fork Protocol","d":"Original code by someone else's cousin.","s":"Decentralised Disappointments"},{"t":"METAV","n":"Empty Metaverse Holdings","d":"Concerts attended by three avatars.","s":"Failed Technology"},{"t":"TICKR","n":"Wrong Ticker Capital","d":"Meant to buy something else.","s":"Questionable Finance"},{"t":"POTS","n":"Non-Stick (Previously) Pans","d":"Sticks now.","s":"Unnecessary Consumer Goods"},{"t":"SMOG","n":"Low Emission (Low Output) Ltd.","d":"Green by doing nothing.","s":"Unprofitable Energy"},{"t":"ROTA","n":"Rota Clash Scheduling","d":"Everyone off on Friday.","s":"Administrative Mistakes"},{"t":"CANT","n":"Canteen Mystery Meat Ltd.","d":"Classified.","s":"Lukewarm Hospitality"},{"t":"DANC","n":"Dad Dancing Collective","d":"Moves dated 1983.","s":"Miscellaneous Regrets"},{"t":"ELEC","n":"Who Did This Electrical","d":"Previous work: horrifying.","s":"Garage Industrials"},{"t":"BRDG","n":"Bridge Out Of Order","d":"Your funds are in transit. Spiritually.","s":"Decentralised Disappointments"},{"t":"OTP","n":"Verification Code Expired","d":"Please request another code.","s":"Failed Technology"},{"t":"STOP","n":"Stop Loss Forgotten Ltd.","d":"Will set it tomorrow.","s":"Questionable Finance"},{"t":"FRDG","n":"Fridge Magnet Holdings","d":"Holds one takeaway menu.","s":"Unnecessary Consumer Goods"},{"t":"CRNK","n":"Hand-Crank Radio Network","d":"News at arm's length.","s":"Unprofitable Energy"},{"t":"LEAV","n":"Annual Leave Unused Ltd.","d":"Carried over since 2016.","s":"Administrative Mistakes"},{"t":"CURY","n":"Curry Too Hot Admissions","d":"Medium is not medium.","s":"Lukewarm Hospitality"},{"t":"PLNTS","n":"Houseplant Hospice Ltd.","d":"Overwatered with love.","s":"Miscellaneous Regrets"},{"t":"SIGNW","n":"Sign Writer Spelling Ltd.","d":"Profesional service.","s":"Garage Industrials"},{"t":"NODE","n":"Node Running On A Laptop","d":"Laptop also used for homework.","s":"Decentralised Disappointments"},{"t":"EXCL","n":"Spreadsheet Called Final_v7","d":"Do not sort column B.","s":"Failed Technology"},{"t":"ANGL","n":"Fallen Angel Investors","d":"Invested in their nephew.","s":"Questionable Finance"},{"t":"SUIT","n":"Suit Bought For One Wedding","d":"Worn once. Dry cleaned never.","s":"Unnecessary Consumer Goods"},{"t":"OUTG","n":"Planned Outage Services","d":"Outages exceeded expectations.","s":"Unprofitable Energy"},{"t":"EXPN","n":"Expense Claim Rejected Ltd.","d":"Receipt was for a scone.","s":"Administrative Mistakes"},{"t":"BAKE","n":"Soggy Bottom Bakery","d":"Underbaked with confidence.","s":"Lukewarm Hospitality"},{"t":"TASK","n":"Tomorrow's Problem Ltd.","d":"Handled by future self.","s":"Miscellaneous Regrets"},{"t":"POOL","n":"Pool Cleaning (Below Standard)","d":"Now a pond.","s":"Garage Industrials"},{"t":"VALD","n":"Validator Asleep Ltd.","d":"Slashed. Twice.","s":"Decentralised Disappointments"},{"t":"RTRY","n":"Retry Logic Ltd.","d":"Failed. Retrying. Failed.","s":"Failed Technology"},{"t":"SEED","n":"Seed Round Gone Mouldy","d":"Funded. Unwatered.","s":"Questionable Finance"},{"t":"GLOVE","n":"One Glove Missing Ltd.","d":"The other one is on a fence.","s":"Unnecessary Consumer Goods"},{"t":"PIPE","n":"Leaky Pipe Infrastructure","d":"Distribution: everywhere.","s":"Unprofitable Energy"},{"t":"QUOR","n":"Inquorate Board Holdings","d":"Two directors. One asleep.","s":"Administrative Mistakes"},{"t":"TEAS","n":"Afternoon Tea At 4:55","d":"Kitchen closing.","s":"Lukewarm Hospitality"},{"t":"EMAL","n":"Inbox 14,000 Unread","d":"Inbox zero is a myth.","s":"Miscellaneous Regrets"},{"t":"ICEC","n":"Ice Cream Van Plays At Midnight","d":"Chimes unchecked.","s":"Garage Industrials"},{"t":"MEMP","n":"Mempool Waiting Room","d":"Transaction pending since Thursday.","s":"Decentralised Disappointments"},{"t":"BUGS","n":"Known Issues Corp.","d":"Feature, not a bug. Allegedly.","s":"Failed Technology"},{"t":"PITCH","n":"Pitch Deck Only Ventures","d":"Twelve slides. No product.","s":"Questionable Finance"},{"t":"PUZZ","n":"Jigsaw 999 Pieces Ltd.","d":"One piece missing by design.","s":"Unnecessary Consumer Goods"},{"t":"COOL","n":"Fridge Door Ajar Refrigeration","d":"Cooling the kitchen generously.","s":"Unprofitable Energy"},{"t":"AGM","n":"Annual General Muddle","d":"Rescheduled. Again.","s":"Administrative Mistakes"},{"t":"BEAN","n":"Overroasted Coffee Beans","d":"Notes of charcoal.","s":"Lukewarm Hospitality"},{"t":"OPIN","n":"Hot Take Retractions","d":"Deleted. Screenshotted.","s":"Miscellaneous Regrets"},{"t":"HAIR","n":"Barber Who Talks Too Much","d":"Haircut: secondary.","s":"Garage Industrials"},{"t":"NONCE","n":"Stuck Nonce Services","d":"Everything behind it is also stuck.","s":"Decentralised Disappointments"},{"t":"GADG","n":"Kickstarted Gadgets Pending","d":"Shipping estimated Q4 2019.","s":"Failed Technology"},{"t":"UNIC","n":"Unicorn Adjacent Ltd.","d":"Valued at one horse.","s":"Questionable Finance"},{"t":"BOARD","n":"Board Game Rules Dispute Co.","d":"Arguments included in the box.","s":"Unnecessary Consumer Goods"},{"t":"SUNN","n":"Sunbed Solar Farm","d":"Tanned. Unpowered.","s":"Unprofitable Energy"},{"t":"WIKI","n":"Out-Of-Date Wiki Ltd.","d":"Last edited by someone who left.","s":"Administrative Mistakes"},{"t":"HANG","n":"Hangover Brunch Holdings","d":"Served in sunglasses.","s":"Lukewarm Hospitality"},{"t":"RACE","n":"Fun Run Not Fun","d":"Walked the last 4.8km.","s":"Miscellaneous Regrets"},{"t":"BIKE","n":"Bike Repairs Chain Still Off","d":"Pedalling quietly.","s":"Garage Industrials"},{"t":"REVK","n":"Unlimited Approvals Holdings","d":"Revoked nothing. Approved everything.","s":"Decentralised Disappointments"},{"t":"TICK","n":"Smartwatch That Tells Time Badly","d":"Accurate to within the hour.","s":"Failed Technology"},{"t":"EXIT","n":"No Exit Strategy Group","d":"Staying indefinitely.","s":"Questionable Finance"},{"t":"BTTL","n":"Reusable Bottle Left On Bus","d":"Reused by someone else.","s":"Unnecessary Consumer Goods"},{"t":"HOTW","n":"Hot Water Bottle Grid","d":"Peak output: lukewarm.","s":"Unprofitable Energy"},{"t":"TKT","n":"Ticket Closed Won't Fix","d":"Working as intended.","s":"Administrative Mistakes"},{"t":"SUSHI","n":"Sushi Conveyor Nobody Picks","d":"Same plate since opening.","s":"Lukewarm Hospitality"},{"t":"ALRM","n":"Alarm Set PM Not AM","d":"Missed everything.","s":"Miscellaneous Regrets"},{"t":"THMB","n":"Wedding Photographer Thumb Ltd.","d":"Every photo includes a thumb.","s":"Garage Industrials"},{"t":"BLIND","n":"Blind Signing Ltd.","d":"Signed it. Didn't read it. Like the terms and conditions.","s":"Decentralised Disappointments"},{"t":"CHATB","n":"Sorry I Didn't Catch That Bots","d":"Did you mean: speak to an agent?","s":"Failed Technology"},{"t":"BEAR","n":"Permanently Bearish Research","d":"Called 14 of the last 2 recessions.","s":"Questionable Finance"},{"t":"SPNG","n":"Sponge Supplies Wholesale","d":"Dave's sole supplier.","s":"Unnecessary Consumer Goods"},{"t":"DUST","n":"Dusty Solar Panel Cleaning","d":"Cleaning scheduled after the next rain.","s":"Unprofitable Energy"},{"t":"RSVP","n":"RSVP Not Returned Ltd.","d":"Attending, probably.","s":"Administrative Mistakes"},{"t":"CNDY","n":"Sweet Shop Out Of Sweets","d":"Jars for display purposes.","s":"Lukewarm Hospitality"},{"t":"BDAY","n":"Forgot Birthday Holdings","d":"Card arriving shortly.","s":"Miscellaneous Regrets"},{"t":"MRKT","n":"Weather Dependent Market Stall","d":"Closed: rain. Closed: sun.","s":"Garage Industrials"},{"t":"HWWL","n":"Hardware Wallet In A Drawer","d":"Somewhere in the drawer of cables.","s":"Decentralised Disappointments"},{"t":"DUCK","n":"Autocorrect Duck Inc.","d":"Ducking incredible.","s":"Failed Technology"},{"t":"CASH","n":"Card Machine Broken Ltd.","d":"Cash only today. And yesterday.","s":"Questionable Finance"},{"t":"WOOL","n":"Itchy Jumper Knitwear","d":"Made with love. Worn with resentment.","s":"Unnecessary Consumer Goods"},{"t":"WICK","n":"Short Wick Candle Power","d":"Snuffed early.","s":"Unprofitable Energy"},{"t":"STAT","n":"Status Update Update Ltd.","d":"No update. Update to follow.","s":"Administrative Mistakes"},{"t":"FIZZ","n":"Fizz On Tap Promises","d":"Tap broken.","s":"Lukewarm Hospitality"},{"t":"CHOR","n":"Chores Rota Ignored","d":"Washing up soaking since Sunday.","s":"Miscellaneous Regrets"},{"t":"CATR","n":"Catering For Ten (Fed Four)","d":"Portion control enthusiasts.","s":"Garage Industrials"},{"t":"PIN","n":"Forgot The PIN Holdings","d":"Two attempts remaining.","s":"Decentralised Disappointments"},{"t":"SAAS","n":"Subscription To A Subscription","d":"Monthly fee to cancel your monthly fee.","s":"Failed Technology"},{"t":"FUND","n":"Fundraising For The Fundraiser","d":"Raising money to raise money.","s":"Questionable Finance"},{"t":"SNCK","n":"Family-Size Snack Group","d":"Serves one, in the end.","s":"Unnecessary Consumer Goods"},{"t":"RENW","n":"Renewable Excuses Ltd.","d":"Excuses replenished daily.","s":"Unprofitable Energy"},{"t":"PRBN","n":"Probation Extended Holdings","d":"Under review indefinitely.","s":"Administrative Mistakes"},{"t":"BAGL","n":"Bagel Hole Industries","d":"Sells the middle.","s":"Lukewarm Hospitality"},{"t":"AUTO","n":"Autoplay Next Episode Ltd.","d":"Bedtime: theoretical.","s":"Miscellaneous Regrets"},{"t":"BUSS","n":"Rail Replacement Bus Services","d":"The scenic route, enforced.","s":"Garage Industrials"},{"t":"PAUSE","n":"Withdrawals Paused Exchange","d":"Paused for maintenance. Maintenance paused.","s":"Decentralised Disappointments"},{"t":"PRMT","n":"Prompt Engineering Associates","d":"Asked nicely. Did not work.","s":"Failed Technology"},{"t":"RISK","n":"Risk Appetite Ltd.","d":"Ate the whole thing.","s":"Questionable Finance"},{"t":"TEA","n":"Lukewarm Tea Brands","d":"Forgotten on the side.","s":"Unnecessary Consumer Goods"},{"t":"ARCX","n":"Electric Arc Hobbyist Labs","d":"Eyebrows regrowing.","s":"Unprofitable Energy"},{"t":"SURV","n":"Anonymous Staff Survey (Not)","d":"Your answers will be shared with Dave.","s":"Administrative Mistakes"},{"t":"WAFL","n":"Waffle Iron Stuck Ltd.","d":"Waffle permanently installed.","s":"Lukewarm Hospitality"},{"t":"QUIT","n":"Quitting Tomorrow Holdings","d":"Tomorrow, confirmed.","s":"Miscellaneous Regrets"},{"t":"TRNS","n":"Leaves On The Line Railways","d":"Seasonal. Annual. Inevitable.","s":"Garage Industrials"},{"t":"KYC","n":"Selfie Holding A Passport Ltd.","d":"Verification failed: blurry.","s":"Decentralised Disappointments"},{"t":"GLTCH","n":"Glitch Gaming Studios","d":"Early access since 2016.","s":"Failed Technology"},{"t":"QUANT","n":"Quantitative Guessing Associates","d":"Guesses, but in a spreadsheet.","s":"Questionable Finance"},{"t":"PLAST","n":"Plaster That Won't Stick","d":"Comes off in the shower.","s":"Unnecessary Consumer Goods"},{"t":"BOIL","n":"Boiler Pressure Low Inc.","d":"Top up via the mysterious valve.","s":"Unprofitable Energy"},{"t":"BCC","n":"Blind Copy Incident Ltd.","d":"It was not blind.","s":"Administrative Mistakes"},{"t":"SPRO","n":"Espresso Machine Descaling","d":"Back in 40 minutes.","s":"Lukewarm Hospitality"},{"t":"FLAT","n":"Flatmate Labelled Milk","d":"Milk still disappearing.","s":"Miscellaneous Regrets"},{"t":"FERRY","n":"Ferry Cancelled Weather Fine","d":"Operational reasons.","s":"Garage Industrials"},{"t":"APY","n":"Unsustainable Yield Farm","d":"Yield displayed: enormous. Yield received: fond memories.","s":"Decentralised Disappointments"},{"t":"STRM","n":"Stream Starting Soon Media","d":"Starting soon since 7pm.","s":"Failed Technology"},{"t":"MRGN","n":"Margin Call Hotline","d":"Your call is important to us. So is your collateral.","s":"Questionable Finance"},{"t":"MATT","n":"Air Mattress Deflating Co.","d":"Firm at 11pm. Floor by 3am.","s":"Unnecessary Consumer Goods"},{"t":"FUMES","n":"Running On Fumes Holdings","d":"Fuel light on since 2020.","s":"Unprofitable Energy"},{"t":"LOGN","n":"Login Portal Maze Ltd.","d":"Forgot username? Forgot password? Forgot why?","s":"Administrative Mistakes"},{"t":"MLKS","n":"Milkshake Machine Broken (Always)","d":"Under maintenance since installation.","s":"Lukewarm Hospitality"},{"t":"SPOO","n":"Crowdfunded Smart Spoon","d":"Backer updates: apologies.","s":"Miscellaneous Regrets"},{"t":"MECH","n":"Mechanic Sucks Teeth Ltd.","d":"Hmm. That's not good.","s":"Garage Industrials"},{"t":"FARM","n":"Yield Farm (Actual Farm)","d":"Harvests potatoes. Token-gated.","s":"Decentralised Disappointments"},{"t":"DOMN","n":"Domain Squatter Holdings","d":"Owns every name except a useful one.","s":"Failed Technology"},{"t":"BULL","n":"Bull In A China Shop Advisors","d":"Aggressive growth. Broken plates.","s":"Questionable Finance"},{"t":"CARD","n":"Birthday Card Bought Late","d":"Signed in the car park.","s":"Unnecessary Consumer Goods"},{"t":"OLIV","n":"Olive Oil Lamp Revival","d":"Romantic. Dim. Expensive.","s":"Unprofitable Energy"},{"t":"FYI","n":"FYI Forwarding Services","d":"Forwarded without context.","s":"Administrative Mistakes"},{"t":"PIES","n":"Pie Mostly Crust Co.","d":"The filling is a rumour.","s":"Lukewarm Hospitality"},{"t":"SHRUG","n":"Shrug Consulting","d":"Shrugging as a service.","s":"Miscellaneous Regrets"},{"t":"RCYC","n":"Wrong Bin Recycling Services","d":"Bin not collected. Contaminated with hope.","s":"Garage Industrials"},{"t":"STAKE","n":"Staked And Forgot Ltd.","d":"Rewards accruing in a wallet nobody can find.","s":"Decentralised Disappointments"},{"t":"HACK","n":"Hackathon Leftovers Ltd.","d":"Built in 48 hours. Maintained in zero.","s":"Failed Technology"},{"t":"KITTY","n":"Office Kitty Treasury","d":"Short by £4 since the Christmas party.","s":"Questionable Finance"},{"t":"STAMP","n":"Second-Class Stamps Only","d":"Arriving in due course.","s":"Unnecessary Consumer Goods"},{"t":"STBY","n":"Standby Light Power Station","d":"Powers only small red lights.","s":"Unprofitable Energy"},{"t":"PRIO","n":"Everything Is Priority One Ltd.","d":"Nothing gets done urgently.","s":"Administrative Mistakes"},{"t":"SCON","n":"Scone Pronunciation Disputes","d":"Argued at every table.","s":"Lukewarm Hospitality"},{"t":"WISH","n":"Wishlist Never Bought Ltd.","d":"Saved for later. Later never came.","s":"Miscellaneous Regrets"},{"t":"GARG","n":"Garage Converted Back To Garage","d":"Full circle.","s":"Garage Industrials"},{"t":"VEST","n":"Unlocks In 2031 Holdings","d":"Vesting slowly. Interest vesting faster.","s":"Decentralised Disappointments"},{"t":"VAPR","n":"Vaporware Industries","d":"Launching soon since announcement.","s":"Failed Technology"},{"t":"PAUL","n":"Rob Peter Pay Paul Ltd.","d":"Peter has questions.","s":"Questionable Finance"},{"t":"SNOWG","n":"Snow Globe Of A Car Park","d":"Shake to see the car park in winter.","s":"Unnecessary Consumer Goods"},{"t":"PEDL","n":"Pedal Power Office Ltd.","d":"Fitness up. Productivity down.","s":"Unprofitable Energy"},{"t":"HOLD","n":"Hold Music Productions","d":"The same eight bars, on loop.","s":"Administrative Mistakes"},{"t":"GLUT","n":"Gluten-Free Bread Bricks","d":"Load-bearing.","s":"Lukewarm Hospitality"},{"t":"OVER","n":"Overthinking Associates","d":"Reread that message 19 times.","s":"Miscellaneous Regrets"},{"t":"DAO","n":"Governance Turnout 0.2% DAO","d":"Quorum reached by one wallet.","s":"Decentralised Disappointments"},{"t":"SPIN","n":"Spinning Wheel Of Waiting","d":"Not responding. Wait or force quit?","s":"Failed Technology"},{"t":"WARM","n":"Wear A Jumper Energy Advice","d":"Policy unchanged since 1974.","s":"Unprofitable Energy"},{"t":"UNSB","n":"Unsaved Changes Ltd.","d":"Closed without saving. Twice.","s":"Administrative Mistakes"},{"t":"MISS","n":"Missed The Bus Holdings","d":"Ran. Didn't make it. Pretended not to run.","s":"Miscellaneous Regrets"},{"t":"VOTE","n":"Proposal #4,118 Ltd.","d":"A proposal to rename the proposal.","s":"Decentralised Disappointments"},{"t":"MULTI","n":"Multisig Of One","d":"Three signers. All Dave.","s":"Decentralised Disappointments"},{"t":"AUDIT","n":"Audit Coming Soon Ltd.","d":"Audited by a friend who likes the logo.","s":"Decentralised Disappointments"},{"t":"PMTM","n":"Post-Mortem Publishing","d":"Thorough analysis of something that never lived.","s":"Decentralised Disappointments"},{"t":"RUGP","n":"Rug-Proof Carpets Ltd.","d":"Proudly stuck to the floor.","s":"Decentralised Disappointments"},{"t":"FLOOR","n":"Floor Price Flooring","d":"Also selling below cost.","s":"Decentralised Disappointments"},{"t":"JPEG","n":"Right-Click Gallery","d":"Owns the image. So does everyone else.","s":"Decentralised Disappointments"},{"t":"PFP","n":"Profile Picture Holdings","d":"Identity outsourced to a cartoon.","s":"Decentralised Disappointments"},{"t":"MINT","n":"Mint Sold Out (Of Buyers)","d":"Minted 10,000. Sold 11.","s":"Decentralised Disappointments"},{"t":"REVL","n":"Reveal Day Disappointments","d":"Rarity: common.","s":"Decentralised Disappointments"},{"t":"WL","n":"Whitelist Spot Brokerage","d":"Spot guaranteed. Mint not.","s":"Decentralised Disappointments"},{"t":"FAIR","n":"Fair Launch (Mostly)","d":"Fair to the first three wallets.","s":"Decentralised Disappointments"},{"t":"CURVE","n":"Bonding Curve Climbers","d":"Got to 98%. Stayed at 98%.","s":"Decentralised Disappointments"},{"t":"GRAD","n":"Never Graduated Holdings","d":"Bonding curve incomplete. Like the degree.","s":"Decentralised Disappointments"},{"t":"DEGEN","n":"Degenerate Capital Allocation","d":"Strategy: yes.","s":"Decentralised Disappointments"},{"t":"LEVR","n":"100x Leverage Ltd.","d":"Liquidated during this sentence.","s":"Decentralised Disappointments"},{"t":"LIQD","n":"Liquidation Alerts Ltd.","d":"You're early. To the liquidation.","s":"Decentralised Disappointments"},{"t":"PERP","n":"Perpetually Wrong Futures","d":"Funding rate: our feelings.","s":"Decentralised Disappointments"},{"t":"STBL","n":"Mostly Stable Coin","d":"Stable on weekdays.","s":"Decentralised Disappointments"},{"t":"PEG","n":"Loose Peg Holdings","d":"Pegged to the dollar, emotionally.","s":"Decentralised Disappointments"},{"t":"FRNT","n":"Front-Run Sandwich Bar","d":"Sandwiched again. Wrong kind of sandwich.","s":"Decentralised Disappointments"},{"t":"SLIPP","n":"Slippage Set To 49% Ltd.","d":"Received exactly what was requested.","s":"Decentralised Disappointments"},{"t":"FAILT","n":"Failed Transaction Ltd.","d":"Fee taken. Trade not.","s":"Decentralised Disappointments"},{"t":"BURN","n":"Burnt The Wrong Tokens Ltd.","d":"Sent to the dead address. Ours.","s":"Decentralised Disappointments"},{"t":"TKNM","n":"Tokenomics Pie Chart Co.","d":"Community allocation: the crumbs.","s":"Decentralised Disappointments"},{"t":"CNTRT","n":"Contract Renounced Ltd.","d":"Nobody is in charge. Including us.","s":"Decentralised Disappointments"},{"t":"NARR","n":"Narrative Rotation Fund","d":"Arrived at every narrative as it left.","s":"Decentralised Disappointments"}];
+
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2400);}
+
+/* links + launch state */
+function wireLink(el, url, pendingText){
+  if(url){el.href=url;el.target="_blank";el.rel="noopener noreferrer";el.removeAttribute('aria-disabled');}
+  else{el.setAttribute('aria-disabled','true');el.innerHTML=el.textContent+' <small>'+pendingText+'</small>';
+    el.addEventListener('click',e=>{if(el.getAttribute('aria-disabled')==='true'){e.preventDefault();toast('Official link published at launch.');}});}
+}
+['#btn-torch','#join-torch'].forEach(s=>wireLink($(s),CONFIG.torchUrl,'At launch'));
+['#btn-x','#join-x'].forEach(s=>wireLink($(s),CONFIG.xUrl,'Coming soon'));
+if(CONFIG.contractAddress){$('#ca').textContent=CONFIG.contractAddress;$('#copy-ca').disabled=false;}
+$('#copy-ca').addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText(CONFIG.contractAddress).then(()=>toast('Address copied. Verify it on Torch.'));});
+if(CONFIG.launched){
+  $('#strip-status').textContent='LIVE ON TORCH';
+  $('#launch-status span:last-child').textContent='STATUS: LIVE ON TORCH';
+  document.querySelectorAll('.dot').forEach(d=>d.style.background='#1F8F4E');
+}
+
+/* ticker tape */
+(function(){
+  const pick=[...COMPANIES].sort(()=>Math.random()-.5).slice(0,40);
+  const html=pick.map(c=>`<span><b>${c.t}</b>—</span>`).join('');
+  $('#tape').innerHTML=html+html;
+})();
+
+/* directory */
+const SECTORS=['All',...[...new Set(COMPANIES.map(c=>c.s))]];
+let sector='All', query='', shown=60;
+const PAGE=60;
+$('#chips').innerHTML=SECTORS.map(s=>`<button class="chip" type="button" aria-pressed="${s==='All'}" data-s="${esc(s)}">${esc(s)}${s==='All'?'':' <span class="mono" style="opacity:.6">'+COMPANIES.filter(c=>c.s===s).length+'</span>'}</button>`).join('');
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;sector=b.dataset.s;shown=PAGE;
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));render();});
+function hl(text){if(!query)return esc(text);const i=text.toLowerCase().indexOf(query);if(i<0)return esc(text);
+  return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+query.length))+'</mark>'+esc(text.slice(i+query.length));}
+function filtered(){return COMPANIES.filter(c=>(sector==='All'||c.s===sector)&&(!query||(c.t+' '+c.n+' '+c.d).toLowerCase().includes(query)));}
+function render(){
+  const f=filtered();
+  if(!f.length){$('#list').innerHTML=`<li class="dir-empty">No constituents match “${esc(query)}”. That company may be too successful for The Other 500. <a href="#apply">Apply to add one.</a></li>`;}
+  else{$('#list').innerHTML=f.slice(0,shown).map(c=>`<li class="co"><span class="tk">${hl(c.t)}</span><span class="nm">${hl(c.n)}</span><span class="ds">${hl(c.d)}</span><span class="sc">${esc(c.s)}</span></li>`).join('');}
+  $('#count').textContent=`Showing ${Math.min(shown,f.length)} of ${f.length}${f.length!==500?' (500 total)':''}`;
+  $('#more').style.display=f.length>shown?'':'none';
+}
+let qt;$('#q').addEventListener('input',e=>{clearTimeout(qt);qt=setTimeout(()=>{query=e.target.value.trim().toLowerCase();shown=PAGE;render();},80);});
+$('#more').addEventListener('click',()=>{shown+=PAGE;render();});
+function spotlight(){
+  const c=COMPANIES[Math.floor(Math.random()*COMPANIES.length)];
+  const s=$('#spotlight');s.classList.add('on');
+  s.innerHTML=`<span class="tk">${esc(c.t)}</span><div><div class="label" style="color:#9a9a96;margin-bottom:6px">Constituent spotlight · ${esc(c.s)}</div><div class="nm">${esc(c.n)}</div><div class="ds">${esc(c.d)}</div></div><button type="button" id="again">Another</button>`;
+  $('#again').addEventListener('click',spotlight);
+}
+$('#random').addEventListener('click',spotlight);
+render();
+
+/* investor relations */
+const RELEASES=[
+  ['Earnings','Q3','Q3 earnings delayed.','Accountant unavailable. The accountant is also Dave.'],
+  ['Governance','Board','Board meeting cancelled due to insufficient interest.','The board thanks itself for its understanding.'],
+  ['Index','Rebalance','Quarterly rebalancing completed. No changes.','Additions: none. Removals: none. Thank you for your patience.'],
+  ['Index','Notice','Index committee rejects NVIDIA for excessive profitability.','NVIDIA may reapply following a significant setback.'],
+  ['Governance','AGM','Annual shareholder meeting moved to Dave’s garage.','Parking is available on the drive. Please do not touch the sponge.'],
+  ['Committee','Minutes','Investment committee met today. Nobody attended.','Motion carried.'],
+  ['Strategy','Outlook','Committee confirms strategy of continuing to do whatever this is.','Following an extensive review, no review took place.'],
+  ['Index','Methodology','Methodology updated: excellence was never an option.','Applicants showing promise will be returned to sender.'],
+  ['Index','Sector','The Other 500 adds a ninth sector: Decentralised Disappointments.','80 new constituents. The roadmap for the remaining sectors is scheduled for Q5.'],
+  ['Treasury','Multisig','Treasury multisig update: all three signers are Dave.','Dave has approved this announcement. Three times.']
+];
+$('#ir').innerHTML=RELEASES.map((r,i)=>`<article class="release"><div class="meta"><span>Ref. SPY2/IR/${String(41+i*3).padStart(4,'0')} · <span class="tag">${r[0]}</span></span><span>Filed: Late</span></div><h3>${esc(r[2])}</h3><p>${esc(r[3])}</p></article>`).join('');
+
+/* application demo (no backend: nothing leaves the browser) */
+const VERDICTS=[
+  ['Provisionally admitted.','The committee found the application sufficiently disappointing.'],
+  ['Admitted on probation.','Strong rejection credentials. Some concern the founder may try.'],
+  ['Placed on the waiting list.','The waiting list is also disappointing, so this is a compliment.'],
+  ['Admitted, reluctantly.','The committee could not find a reason to reject your reason for rejection.']
+];
+const f={name:$('#f-name'),ticker:$('#f-ticker'),reason:$('#f-reason')};
+f.reason.addEventListener('input',()=>$('#r-count').textContent=f.reason.value.length);
+f.ticker.addEventListener('input',()=>{f.ticker.value=f.ticker.value.toUpperCase().replace(/[^A-Z]/g,'');});
+$('#app').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=f.name.value.trim(), tk=f.ticker.value.trim(), reason=f.reason.value.trim();
+  let ok=true;
+  const set=(id,msg)=>{$(id).textContent=msg;if(msg)ok=false;};
+  set('#e-name',name.length<2?'Please enter a company name. Even a bad one.':'');
+  set('#e-ticker',!/^[A-Z]{2,5}$/.test(tk)?'Tickers are 2 to 5 letters.':(COMPANIES.some(c=>c.t===tk)?`${tk} is already taken by ${COMPANIES.find(c=>c.t===tk).n}.`:''));
+  set('#e-reason',reason.length<8?'Please give the committee a reason to reject you.':'');
+  if(!ok)return;
+  const v=VERDICTS[Math.floor(Math.random()*VERDICTS.length)];
+  const ref='SPY2/A/'+String(Math.floor(Math.random()*9000)+1000);
+  const handle=CONFIG.xHandle?' @'+CONFIG.xHandle:'';
+  const tweet=`I have applied to join The Other 500.\n\n${name} ($${tk})\nReason for rejection: ${reason}\n\n$SPY2${handle}`;
+  const r=$('#receipt');r.classList.add('on');$('#sample').style.display='none';
+  r.innerHTML=`<div class="top"><span>APPLICATION RECEIVED</span><span>${ref}</span></div><div class="body">
+    <div class="row"><span>Company</span><span>${esc(name)}</span></div>
+    <div class="row"><span>Ticker</span><span>${esc(tk)}</span></div>
+    <div class="row"><span>Grounds for rejection</span><span>${esc(reason)}</span></div>
+    <div class="row"><span>Committee attendance</span><span>0</span></div>
+    <p class="verdict">${v[0]}</p><p class="why">${v[1]}</p>
+    <div class="stamp">DEMO · NOT SUBMITTED</div>
+    <p style="font-size:13px;color:#444;margin:4px 0 16px">This decision is a joke generated in your browser. Your application has not been sent or stored anywhere. To get it in front of the committee, share it on X.</p>
+    <div class="ctas"><a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://x.com/intent/post?text=${encodeURIComponent(tweet)}">Share on X</a><button class="btn" type="button" id="again-app">Apply again</button></div></div>`;
+  $('#again-app').addEventListener('click',()=>{$('#app').reset();$('#r-count').textContent='0';r.classList.remove('on');$('#sample').style.display='';f.name.focus();});
+  if(window.innerWidth<860)r.scrollIntoView({behavior:'smooth',block:'start'});
+});
+</script>
+</body>
+</html>
